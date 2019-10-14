@@ -5,7 +5,31 @@ class App extends Component {
         return (
             <div className="container">
                 <div className="row justify-content-center">
-                    <div className="col-md-8">
+                    <div className="col-md-6">
+                        <div className="card">
+                            <div className="card-header">tweet something..</div>
+
+                            <div className="card-body">
+                                <form>
+                                    <div className="form-group">
+                                        <textarea
+                                            className="form-control"
+                                            rows="5"
+                                            maxlength="140"
+                                            placeholder="whats up?"
+                                            required
+                                        />
+                                    </div>
+                                    <input
+                                        type="submit"
+                                        value="POST"
+                                        className="form-control"
+                                    />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
                         <div className="card">
                             <div className="card-header">App Component</div>
 
