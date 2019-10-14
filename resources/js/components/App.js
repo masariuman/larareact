@@ -15,7 +15,7 @@ class App extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.postdata()
+        this.postData()
         console.log(this.state.body)
     }
 
@@ -25,7 +25,7 @@ class App extends Component {
         });
     }
 
-    postdata() {
+    postData() {
         axios.post('/posts', {
             body: this.state.body
         });

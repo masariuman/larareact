@@ -69119,7 +69119,7 @@ function (_Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.postdata();
+      this.postData();
       console.log(this.state.body);
     }
   }, {
@@ -69130,8 +69130,8 @@ function (_Component) {
       });
     }
   }, {
-    key: "postdata",
-    value: function postdata() {
+    key: "postData",
+    value: function postData() {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/posts', {
         body: this.state.body
       });
