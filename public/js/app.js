@@ -69107,7 +69107,8 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.state = {
-      body: ''
+      body: '',
+      posts: []
     }; //bind
 
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -69118,9 +69119,24 @@ function (_Component) {
   _createClass(App, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      this.postData();
-      console.log(this.state.body);
+      var _this2 = this;
+
+      e.preventDefault(); // this.postData()
+
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/posts', {
+        body: this.state.body
+      }).then(function (response) {
+        //console
+        console.log(response); // set state
+
+        _this2.setState({
+          posts: [response.data]
+        });
+      }); //clean state
+
+      this.setState({
+        body: this.state.body
+      });
     }
   }, {
     key: "handleChange",
@@ -69157,6 +69173,7 @@ function (_Component) {
         className: "form-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: this.handleChange,
+        value: this.state.body,
         className: "form-control",
         rows: "5",
         maxLength: "140",
@@ -69172,9 +69189,13 @@ function (_Component) {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
-      }, "App Component"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Recent Tweets"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
-      }, "I'm an App component!")))));
+      }, this.state.posts.map(function (post) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: post.id
+        }, post.body);
+      }))))));
     }
   }]);
 

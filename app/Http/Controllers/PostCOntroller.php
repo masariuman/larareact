@@ -22,7 +22,7 @@ class PostCOntroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request Post $post)
+    public function create(Request $request, Post $post)
     {
         //create post
         $createdPost = $request->user()->posts()->create([
