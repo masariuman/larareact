@@ -44,10 +44,10 @@ class User extends Authenticatable
     }
 
     public function getAvatar() {
-        return 'https://gravatar.com/avatar/'.md5($this->email).'/?s=45&d=mm'
+        return 'https://gravatar.com/avatar/'.md5($this->email).'/?s=45&d=mm';
     }
 
     public function getAvatarAttribute() {
-        return $this->getAvatarAttribute();
+        return $this->getAvatar();
     }
 }
