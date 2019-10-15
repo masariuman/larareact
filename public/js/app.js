@@ -69202,7 +69202,9 @@ function (_Component) {
       }, this.state.posts.map(function (post) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: post.id
-        }, post.body);
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, post.user.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body));
       }))))));
     }
   }]);
