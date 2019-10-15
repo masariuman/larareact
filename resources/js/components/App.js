@@ -1,35 +1,36 @@
-import React, { Component } from 'react';
-import axios from 'axios'
+import React, { Component } from "react";
+import axios from "axios";
 
 class App extends Component {
-
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            body: '',
+            body: "",
             posts: []
-        }
+        };
         //bind
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
         // this.postData()
-        axios.post('/posts', {
-            body: this.state.body
-        }).then(response => {
-            //console
-            console.log(response);
-            // set state
-            this.setState({
-                posts: [response.data]
+        axios
+            .post("/posts", {
+                body: this.state.body
+            })
+            .then(response => {
+                //console
+                console.log(response);
+                // set state
+                this.setState({
+                    posts: [...this.state.posts, response.data]
+                });
             });
-        });
         //clean state
         this.setState({
-            body: this.state.body
+            body: ""
         });
     }
 
@@ -40,7 +41,7 @@ class App extends Component {
     }
 
     postData() {
-        axios.post('/posts', {
+        axios.post("/posts", {
             body: this.state.body
         });
     }
@@ -80,7 +81,9 @@ class App extends Component {
                             <div className="card-header">Recent Tweets</div>
 
                             <div className="card-body">
-                                {this.state.posts.map(post => <div key={post.id}>{post.body}</div>)}
+                                {this.state.posts.map(post => (
+                                    <div key={post.id}>{post.body}</div>
+                                ))}
                             </div>
                         </div>
                     </div>
