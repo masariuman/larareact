@@ -69116,18 +69116,40 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
     _this.state = {
       body: "",
-      posts: []
+      posts: [],
+      loading: false
     }; //bind
 
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.renderPosts = _this.renderPosts.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(App, [{
+    key: "getPosts",
+    value: function getPosts() {
+      var _this2 = this;
+
+      this.setState({
+        loading: true
+      });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/posts").then(function (response) {
+        return _this2.setState({
+          posts: _toConsumableArray(response.data.posts),
+          loading: false
+        });
+      });
+    }
+  }, {
+    key: "UNSAFE_componentWillMount",
+    value: function UNSAFE_componentWillMount() {
+      this.getPosts();
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault(); // this.postData()
 
@@ -69137,8 +69159,9 @@ function (_Component) {
         //console
         // console.log(response);
         // set state
-        _this2.setState({
-          posts: [].concat(_toConsumableArray(_this2.state.posts), [response.data])
+        _this3.setState({
+          posts: [].concat(_toConsumableArray(_this3.state.posts), [response.data]),
+          body: ""
         });
       }); //clean state
 
@@ -69158,6 +69181,27 @@ function (_Component) {
     value: function postData() {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/posts", {
         body: this.state.body
+      });
+    }
+  }, {
+    key: "renderPosts",
+    value: function renderPosts() {
+      return this.state.posts.map(function (post) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: post.id,
+          className: "media"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "media-left"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: post.user.avatar,
+          className: "media-object mr-2"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "media-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "user"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "users/".concat(post.user.username)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, post.user.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body)));
       });
     }
   }, {
@@ -69197,25 +69241,9 @@ function (_Component) {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
-      }, "Recent Tweets"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Recent Tweets"), !this.state.loading ? this.renderPosts() : "loading", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
-      }, this.state.posts.map(function (post) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: post.id,
-          className: "media"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "media-left"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: post.user.avatar,
-          className: "media-object mr-2"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "media-body"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "user"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "users/".concat(post.user.username)
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, post.user.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body)));
-      }))))));
+      })))));
     }
   }]);
 

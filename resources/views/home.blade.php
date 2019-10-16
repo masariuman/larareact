@@ -13,7 +13,7 @@
     <hr>
     <h2>Followers</h2>
 
-    @foreach($Followers as $user)
+    @foreach($followers as $user)
         <p><a href="{{route('users',$user)}}">{{$user->username}}</a></p>
     @endforeach
 </div>
