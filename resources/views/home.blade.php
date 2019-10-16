@@ -7,7 +7,14 @@
     <h2>Following</h2>
 
     @foreach($following as $user)
-        <a href="{{route('users',$user)}}">{{$user->username}}
+        <p><a href="{{route('users',$user)}}">{{$user->username}}</a></p>
+    @endforeach
+
+    <hr>
+    <h2>Followers</h2>
+
+    @foreach($Followers as $user)
+        <p><a href="{{route('users',$user)}}">{{$user->username}}</a></p>
     @endforeach
 </div>
 @endsection
