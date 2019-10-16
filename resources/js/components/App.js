@@ -16,11 +16,13 @@ class App extends Component {
     }
 
     getPosts() {
-        this.setState({ loading: true });
-        axios.get("/posts").then(response =>
+        // this.setState({ loading: true });
+        axios.get("/posts").then((
+            response // console.log(response.data.posts)
+        ) =>
             this.setState({
-                posts: [...response.data.posts],
-                loading: false
+                posts: [...response.data.posts]
+                // loading: false
             })
         );
     }
@@ -41,7 +43,7 @@ class App extends Component {
                 // console.log(response);
                 // set state
                 this.setState({
-                    posts: [...this.state.posts, response.data],
+                    posts: [response.data, ...this.state.posts],
                     body: ""
                 });
             });

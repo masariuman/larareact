@@ -69131,13 +69131,12 @@ function (_Component) {
     value: function getPosts() {
       var _this2 = this;
 
-      this.setState({
-        loading: true
-      });
-      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/posts").then(function (response) {
+      // this.setState({ loading: true });
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/posts").then(function (response // console.log(response.data.posts)
+      ) {
         return _this2.setState({
-          posts: _toConsumableArray(response.data.posts),
-          loading: false
+          posts: _toConsumableArray(response.data.posts) // loading: false
+
         });
       });
     }
@@ -69160,7 +69159,7 @@ function (_Component) {
         // console.log(response);
         // set state
         _this3.setState({
-          posts: [].concat(_toConsumableArray(_this3.state.posts), [response.data]),
+          posts: [response.data].concat(_toConsumableArray(_this3.state.posts)),
           body: ""
         });
       }); //clean state
