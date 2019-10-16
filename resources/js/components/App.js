@@ -22,7 +22,7 @@ class App extends Component {
             })
             .then(response => {
                 //console
-                console.log(response);
+                // console.log(response);
                 // set state
                 this.setState({
                     posts: [...this.state.posts, response.data]
@@ -91,7 +91,7 @@ class App extends Component {
                                         </div>
                                         <div className="media-body">
                                             <div className="user">
-                                                <a href="#">
+                                                <a href={`users/${post.user.username}`}>
                                                     <b>{post.user.username}</b>
                                                 </a>
                                             </div>

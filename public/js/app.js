@@ -69135,8 +69135,8 @@ function (_Component) {
         body: this.state.body
       }).then(function (response) {
         //console
-        console.log(response); // set state
-
+        // console.log(response);
+        // set state
         _this2.setState({
           posts: [].concat(_toConsumableArray(_this2.state.posts), [response.data])
         });
@@ -69213,7 +69213,7 @@ function (_Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "#"
+          href: "users/".concat(post.user.username)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, post.user.username))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body)));
       }))))));
     }
