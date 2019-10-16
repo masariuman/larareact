@@ -7,4 +7,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/posts', 'PostCOntroller@create');
 
     Route::get('/users/{user}', 'UserController@index');
+    Route::get('/users/{user}/follow', 'UserController@follow');
 });

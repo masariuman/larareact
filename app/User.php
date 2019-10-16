@@ -54,4 +54,23 @@ class User extends Authenticatable
     public function getRouteKeyName() {
         return 'username';
     }
+
+    public function isNotTheUser(User $user) {
+        return $this->id !== $user->id;
+    }
+
+    public function isFollowing(User $user){
+        return (bool) $this->following->where('id',$user->id)->count();
+    }
+
+    public function canFollow(User $user){
+        if (!$this->isNotTheUser($user)){
+            return false;
+        }
+        return !$this->isFollowing($user);
+    }
+
+    public function following(){
+        return $this->belongsToMany('App\User','follows','user_id','follower_id');
+    }
 }

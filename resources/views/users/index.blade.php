@@ -2,6 +2,14 @@
 
 @section('content')
 <div class="container">
-    {{$user}}
+    {{ $user->username }}
+    <hr>
+    @if (Auth::user()->isNotTheUser($user))
+        @if (Auth::user()->isFollowing($user))
+            <a href="$">Unfollow</a>
+        @else
+            <a href="#">Follow</a>
+        @endif
+    @endif
 </div>
 @endsection
