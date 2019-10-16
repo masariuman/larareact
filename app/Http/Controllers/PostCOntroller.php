@@ -12,9 +12,14 @@ class PostCOntroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Post $post)
     {
         //
+        $allPosts = $post->whereIn('user_id',$request->user()->following()->pluck('users.id')->push($request->user()->id))->with('user');
+
+        $posts = $allPosts->orderBy('created_at','desc')->take(10)->get();
+
+        return response()->json(['posts'=>$posts,]);
     }
 
     /**
